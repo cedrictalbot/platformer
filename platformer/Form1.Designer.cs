@@ -20,7 +20,7 @@
                 ((System.ComponentModel.ISupportInitialize)(box)).BeginInit();
             }
 
-            this.player = new System.Windows.Forms.PictureBox();
+            this.player = new TransparentPictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.ending = new System.Windows.Forms.PictureBox();
 
@@ -45,12 +45,13 @@
             }
             // 
             // player
-            // 
-            this.player.BackColor = System.Drawing.Color.Blue;
-            this.player.Location = new System.Drawing.Point(0, 500);
+            //
+            this.player.BackColor = System.Drawing.Color.Transparent;
+            this.player.Location = new System.Drawing.Point(0, 450);
             this.player.Name = "player";
-            this.player.Size = new System.Drawing.Size(30, 50);
+            this.player.Size = new System.Drawing.Size(47, 64);
             this.player.TabStop = false;
+            this.player.Image = System.Drawing.Image.FromFile("platformer/public/character_idle.png");
             //
             // ending
             //
@@ -94,7 +95,7 @@
 
         }
 
-        private System.Windows.Forms.PictureBox player;
+        private TransparentPictureBox player;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox ending;
     }
