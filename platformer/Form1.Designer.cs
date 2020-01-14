@@ -69,7 +69,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 603);
+            this.ClientSize = new System.Drawing.Size(445, 557);
+            this.MinimumSize = this.ClientSize;
+            this.MaximumSize = this.ClientSize;
 
             foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes) {
                 this.Controls.Add(box);
