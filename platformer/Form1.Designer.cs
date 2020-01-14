@@ -9,8 +9,8 @@
 
             this.platforms.Add(new Platform(System.Drawing.Color.Brown,0,570,"ground",500,35));
             this.platforms.Add(new Platform(System.Drawing.Color.Brown,327,489,"platform1",150,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,208,368,"platform2",100,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,0,263,"platform3",142,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,168,368,"platform2",100,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,20,263,"platform3",100,50));
             this.platforms.Add(new Platform(System.Drawing.Color.Brown,220,143,"platform4",280,50));
 
             foreach (Platform p in this.platforms) {
@@ -31,6 +31,7 @@
             //
             // platforms
             //
+            System.Drawing.Image platformImage = System.Drawing.Image.FromFile("platformer/public/platform.png");
             for (int i=0; i < this.platforms.Count; i++) {
                 Platform platform = (Platform) this.platforms[i];
                 System.Windows.Forms.PictureBox box = (System.Windows.Forms.PictureBox) this.pictureBoxes[i];
@@ -40,7 +41,7 @@
                 box.Size = new System.Drawing.Size(platform.xSize, platform.ySize);
                 box.TabStop = false;
                 box.Tag = "platform";
-                box.SetImage(System.Drawing.Image.FromFile("platformer/public/platform.png"));
+                box.SetImage(platformImage);
             }
             // 
             // player
@@ -53,12 +54,12 @@
             //
             // ending
             //
-            this.ending.BackColor = System.Drawing.Color.Green;
-            this.ending.Location = new System.Drawing.Point(470,93);
+            this.ending.Location = new System.Drawing.Point(402,47);
             this.ending.Name = "ending";
-            this.ending.Size = new System.Drawing.Size(30,50);
+            this.ending.Size = new System.Drawing.Size(98,100);
             this.ending.TabStop = false;
             this.ending.Tag = "ending";
+            this.ending.Image = System.Drawing.Image.FromFile("platformer/public/door.png");
             // 
             // timer1
             // 
