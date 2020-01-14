@@ -101,7 +101,7 @@ namespace platformgame {
                         messageShown = true;
                     }
                     if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
-                        // timer1.Stop();
+                        timer1.Stop();
                         MessageBox.Show("You won !");
                     }
                 }

@@ -8,7 +8,7 @@
             this.components = new System.ComponentModel.Container();
 
             this.platforms.Add(new Platform(System.Drawing.Color.Brown,0,570,"ground",500,35));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,327,489,"platform1",133,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,327,489,"platform1",150,50));
             this.platforms.Add(new Platform(System.Drawing.Color.Brown,208,368,"platform2",100,50));
             this.platforms.Add(new Platform(System.Drawing.Color.Brown,0,263,"platform3",142,50));
             this.platforms.Add(new Platform(System.Drawing.Color.Brown,220,143,"platform4",280,50));
@@ -40,6 +40,7 @@
                 box.Size = new System.Drawing.Size(platform.xSize, platform.ySize);
                 box.TabStop = false;
                 box.Tag = "platform";
+                box.SetImage(System.Drawing.Image.FromFile("platformer/public/platform.png"));
             }
             // 
             // player
