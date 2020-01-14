@@ -7,11 +7,14 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
 
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,0,570,"ground",500,35));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,327,489,"platform1",150,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,168,368,"platform2",100,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,20,263,"platform3",100,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,220,143,"platform4",280,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,0,772,"ground",1463,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,327,693,"platform1",150,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,518,582,"platform2",100,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,700,477,"platform3",250,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,420,357,"platform4",200,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,710,237,"platform5",50,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,910,237,"platform6",200,50));
+            this.platforms.Add(new Platform(System.Drawing.Color.Brown,1183,143,"platform7",280,50));
 
             foreach (Platform p in this.platforms) {
                 this.pictureBoxes.Add(new System.Windows.Forms.PictureBox());
@@ -47,7 +50,7 @@
             // player
             //
             this.player.BackColor = System.Drawing.Color.Transparent;
-            this.player.Location = new System.Drawing.Point(0, 450);
+            this.player.Location = new System.Drawing.Point(0, 708);
             this.player.Name = "player";
             this.player.Size = new System.Drawing.Size(47, 64);
             this.player.TabStop = false;
@@ -55,7 +58,8 @@
             //
             // ending
             //
-            this.ending.Location = new System.Drawing.Point(402,47);
+            this.ending.BackColor = System.Drawing.Color.Transparent;
+            this.ending.Location = new System.Drawing.Point(1366,47);
             this.ending.Name = "ending";
             this.ending.Size = new System.Drawing.Size(98,100);
             this.ending.TabStop = false;
@@ -72,9 +76,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(445, 557);
+            this.ClientSize = new System.Drawing.Size(1288, 747);
             this.MinimumSize = this.ClientSize;
             this.MaximumSize = this.ClientSize;
+            this.BackgroundImage = System.Drawing.Image.FromFile("platformer/public/background.png");
 
             foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes) {
                 this.Controls.Add(box);
