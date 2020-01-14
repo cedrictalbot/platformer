@@ -1,0 +1,2 @@
+csc platformer/*.cs -out:platformer/bin/Program.exe
+mono platformer/bin/Program.exe
