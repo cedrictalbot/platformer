@@ -18,6 +18,7 @@ namespace platformgame {
         bool hitLeft = false;
         bool hitRight = false;
         bool interacting = false;
+        bool messageShown = false;
 
         const int gravity = 12;
         const int jumpSpeed = -12;
@@ -92,6 +93,13 @@ namespace platformgame {
                     handlePlatformInteraction(player, x);
                 }
                 if (x is PictureBox && (string)x.Tag == "ending") {
+                    if (player.Bounds.IntersectsWith(x.Bounds) && !messageShown) {
+                        MessageBox.Show("Use E to interact with objects");
+                        goright = false;
+                        goleft = false;
+                        jumping = false;
+                        messageShown = true;
+                    }
                     if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
                         // timer1.Stop();
                         MessageBox.Show("You won !");
