@@ -102,7 +102,8 @@ namespace platformgame {
                     }
                     if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
                         timer1.Stop();
-                        MessageBox.Show("You won !");
+                        level += 1;
+                        InitializeComponent();
                     }
                 }
             }

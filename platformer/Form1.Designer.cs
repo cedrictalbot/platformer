@@ -3,18 +3,14 @@
         private System.ComponentModel.IContainer components = null;
         private System.Collections.ArrayList platforms = new System.Collections.ArrayList();
         private System.Collections.ArrayList pictureBoxes = new System.Collections.ArrayList();
+        private int level = 1;
 
         private void InitializeComponent() {
+            this.Controls.Clear();
             this.components = new System.ComponentModel.Container();
 
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,0,772,"ground",1463,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,327,693,"platform1",150,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,518,582,"platform2",100,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,700,477,"platform3",250,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,420,357,"platform4",200,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,710,237,"platform5",50,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,910,237,"platform6",200,50));
-            this.platforms.Add(new Platform(System.Drawing.Color.Brown,1183,143,"platform7",280,50));
+            this.platforms = Platform.getPlatforms(this.level);
+            this.pictureBoxes = new System.Collections.ArrayList();
 
             foreach (Platform p in this.platforms) {
                 this.pictureBoxes.Add(new System.Windows.Forms.PictureBox());
