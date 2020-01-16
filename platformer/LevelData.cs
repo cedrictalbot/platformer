@@ -23,8 +23,19 @@ namespace platformgame {
                     break;
                 case 2 :
                     platforms.Add(new ScreenComponent(Color.Brown,0,772,"ground",1463,50));
-                    buttons.Add(new InteractiveButton(Color.Brown,527,693,"button1",50,50, "interactivePlatform6"));
-                    interactivePlatforms.Add(new ScreenComponent(Color.Brown,327,693,"interactivePlatform6",200,50));
+                    interactivePlatforms.Add(new ScreenComponent(Color.Brown,327,663,"interactivePlatform1",200,50));
+                    buttons.Add(new InteractiveButton(Color.Brown,227,715,"button1",50,50, "interactivePlatform1", false));
+                    platforms.Add(new ScreenComponent(Color.Brown,82,571,"platform1",150,50));
+                    interactivePlatforms.Add(new ScreenComponent(Color.Brown,477,582,"interactivePlatform2",50,50));
+                    buttons.Add(new InteractiveButton(Color.Brown,82,514,"button2",50,50, "interactivePlatform2", false));
+                    platforms.Add(new ScreenComponent(Color.Brown,377,501,"platform2",150,50));
+                    interactivePlatforms.Add(new ScreenComponent(Color.Brown,612,571,"interactivePlatform3",50,50));
+                    buttons.Add(new InteractiveButton(Color.Brown,542,501,"button3",50,50, "interactivePlatform3", false));
+                    platforms.Add(new ScreenComponent(Color.Brown,1193,143,"platform7",270,50));
+                    interactivePlatforms.Add(new ScreenComponent(Color.Brown,577,381,"interactivePlatform4",300,50));
+                    buttons.Add(new InteractiveButton(Color.Brown,577,324,"button4",50,50, "interactivePlatform4", true));
+                    interactivePlatforms.Add(new ScreenComponent(Color.Brown,970,262,"interactivePlatform5",150,50));
+                    buttons.Add(new InteractiveButton(Color.Brown,727,324,"button5",50,50, "interactivePlatform5", false));
                     break;
                 default :
                     break;
