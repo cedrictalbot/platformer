@@ -1,21 +1,25 @@
 ﻿namespace platformgame {
     partial class Form1 {
         private System.ComponentModel.IContainer components = null;
-        private System.Collections.ArrayList platforms = new System.Collections.ArrayList();
-        private System.Collections.ArrayList pictureBoxes = new System.Collections.ArrayList();
+        private System.Collections.Generic.Dictionary<string, System.Collections.ArrayList> levelComponents;
+        private System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox> pictureBoxes;
         private int level = 1;
+        private System.Collections.Generic.Dictionary<string, string> images = LevelHelper.getImages();
 
         private void InitializeComponent() {
             this.Controls.Clear();
             this.components = new System.ComponentModel.Container();
 
-            this.platforms = Platform.getPlatforms(this.level);
-            this.pictureBoxes = new System.Collections.ArrayList();
+            this.levelComponents = LevelHelper.getItems(this.level);
+            this.pictureBoxes = new System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox>();
 
-            foreach (Platform p in this.platforms) {
-                this.pictureBoxes.Add(new System.Windows.Forms.PictureBox());
+            foreach (var pair in this.levelComponents) {
+                foreach (ScreenComponent component in pair.Value) {
+                    this.pictureBoxes[component.name] = new System.Windows.Forms.PictureBox();
+                }
             }
-            foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes) {
+
+            foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes.Values) {
                 ((System.ComponentModel.ISupportInitialize)(box)).BeginInit();
             }
 
@@ -31,16 +35,17 @@
             // platforms
             //
             System.Drawing.Image platformImage = System.Drawing.Image.FromFile("platformer/public/platform.png");
-            for (int i=0; i < this.platforms.Count; i++) {
-                Platform platform = (Platform) this.platforms[i];
-                System.Windows.Forms.PictureBox box = (System.Windows.Forms.PictureBox) this.pictureBoxes[i];
-                box.BackColor = platform.color;
-                box.Location = new System.Drawing.Point(platform.xLocation, platform.yLocation);
-                box.Name = platform.name;
-                box.Size = new System.Drawing.Size(platform.xSize, platform.ySize);
-                box.TabStop = false;
-                box.Tag = "platform";
-                box.SetImage(platformImage);
+            foreach (var pair in this.levelComponents) {
+                foreach (ScreenComponent component in pair.Value) {
+                    System.Windows.Forms.PictureBox box = (System.Windows.Forms.PictureBox) this.pictureBoxes[component.name];
+                    box.BackColor = component.color;
+                    box.Location = new System.Drawing.Point(component.xLocation, component.yLocation);
+                    box.Name = component.name;
+                    box.Size = new System.Drawing.Size(component.xSize, component.ySize);
+                    box.TabStop = false;
+                    box.Tag = pair.Key;
+                    box.SetImage(System.Drawing.Image.FromFile(this.images[pair.Key]));
+                }
             }
             // 
             // player
@@ -77,7 +82,7 @@
             this.MaximumSize = this.ClientSize;
             this.BackgroundImage = System.Drawing.Image.FromFile("platformer/public/background.png");
 
-            foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes) {
+            foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes.Values) {
                 this.Controls.Add(box);
                 ((System.ComponentModel.ISupportInitialize)(box)).EndInit();
             }
