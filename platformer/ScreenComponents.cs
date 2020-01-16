@@ -20,13 +20,12 @@ namespace platformgame {
         }
     }
 
-    public class InteractiveObject : ScreenComponent {
-        public int state = 0;
-        public string type;
+    public class InteractiveButton : ScreenComponent {
+        public string interactsWith;
 
-        public InteractiveObject(System.Drawing.Color color, int xLocation, int yLocation, string name, int xSize, int ySize, string type) 
+        public InteractiveButton(System.Drawing.Color color, int xLocation, int yLocation, string name, int xSize, int ySize, string interactsWith) 
                     : base(color, xLocation, yLocation, name, xSize, ySize) {
-            this.type = type;
+            this.interactsWith = interactsWith;
         }
     }
 }

@@ -89,7 +89,7 @@ namespace platformgame {
             hitRight = false;
 
             foreach (Control x in this.Controls) {
-                if (x is PictureBox && (string)x.Tag == "platform") {
+                if (x is PictureBox && ((string)x.Tag == "platform" || (string)x.Tag == "interactivePlatform")) {
                     handlePlatformInteraction(player, x);
                 }
                 if (x is PictureBox && (string)x.Tag == "ending") {
@@ -104,6 +104,11 @@ namespace platformgame {
                         timer1.Stop();
                         level += 1;
                         InitializeComponent();
+                    }
+                }
+                if (x is PictureBox && (string)x.Tag == "button") {
+                    if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
+                        update(x.Name);
                     }
                 }
             }

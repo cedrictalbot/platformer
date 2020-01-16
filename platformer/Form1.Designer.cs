@@ -3,6 +3,7 @@
         private System.ComponentModel.IContainer components = null;
         private System.Collections.Generic.Dictionary<string, System.Collections.ArrayList> levelComponents;
         private System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox> pictureBoxes;
+        private System.Collections.Generic.Dictionary<string, string> interactions;
         private int level = 1;
         private System.Collections.Generic.Dictionary<string, string> images = LevelHelper.getImages();
 
@@ -12,6 +13,7 @@
 
             this.levelComponents = LevelHelper.getItems(this.level);
             this.pictureBoxes = new System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox>();
+            this.interactions = new System.Collections.Generic.Dictionary<string, string>();
 
             foreach (var pair in this.levelComponents) {
                 foreach (ScreenComponent component in pair.Value) {
@@ -37,14 +39,13 @@
             System.Drawing.Image platformImage = System.Drawing.Image.FromFile("platformer/public/platform.png");
             foreach (var pair in this.levelComponents) {
                 foreach (ScreenComponent component in pair.Value) {
-                    System.Windows.Forms.PictureBox box = (System.Windows.Forms.PictureBox) this.pictureBoxes[component.name];
-                    box.BackColor = component.color;
-                    box.Location = new System.Drawing.Point(component.xLocation, component.yLocation);
-                    box.Name = component.name;
-                    box.Size = new System.Drawing.Size(component.xSize, component.ySize);
-                    box.TabStop = false;
-                    box.Tag = pair.Key;
-                    box.SetImage(System.Drawing.Image.FromFile(this.images[pair.Key]));
+                    // this switch was created for easier later extension (new kind of interactive elements)
+                    switch (pair.Key) {
+                        case "button":
+                            this.interactions[component.name] = ((InteractiveButton) component).interactsWith;
+                            break;
+                    }
+                    displayComponent(pair.Key, component);
                 }
             }
             // 
@@ -82,12 +83,12 @@
             this.MaximumSize = this.ClientSize;
             this.BackgroundImage = System.Drawing.Image.FromFile("platformer/public/background.png");
 
+            this.Controls.Add(this.player);
             foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes.Values) {
                 this.Controls.Add(box);
                 ((System.ComponentModel.ISupportInitialize)(box)).EndInit();
             }
 
-            this.Controls.Add(this.player);
             this.Controls.Add(this.ending);
             this.Name = "Form1";
             this.Text = "Platform Game";
@@ -99,8 +100,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.ending)).EndInit();
             this.ResumeLayout(false);
 
+            foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes.Values) {
+                if ((string)box.Tag == "interactivePlatform") {
+                        this.Controls.Remove(box);
+                }
+            }
         }
 
+        private void displayComponent(string key, ScreenComponent component) {
+            System.Windows.Forms.PictureBox box = (System.Windows.Forms.PictureBox) this.pictureBoxes[component.name];
+            box.BackColor = System.Drawing.Color.Transparent;
+            box.Location = new System.Drawing.Point(component.xLocation, component.yLocation);
+            box.Name = component.name;
+            box.Size = new System.Drawing.Size(component.xSize, component.ySize);
+            box.TabStop = false;
+            box.Tag = key;
+            box.SetImage(System.Drawing.Image.FromFile(this.images[key]));
+        }
+        private void update(string buttonName) {
+            string elementName = this.interactions[buttonName];
+            if (!this.Controls.ContainsKey(elementName)) {
+                this.Controls.Add(this.pictureBoxes[elementName]);
+            } else {
+                this.Controls.Remove(this.pictureBoxes[elementName]);
+            }
+        }
         private TransparentPictureBox player;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox ending;
