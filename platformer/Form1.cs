@@ -89,26 +89,37 @@ namespace platformgame {
             hitRight = false;
 
             foreach (Control x in this.Controls) {
-                if (x is PictureBox && ((string)x.Tag == "platform" || (string)x.Tag == "interactivePlatform")) {
-                    handlePlatformInteraction(player, x);
-                }
-                if (x is PictureBox && (string)x.Tag == "ending") {
-                    if (player.Bounds.IntersectsWith(x.Bounds) && !messageShown) {
-                        MessageBox.Show("Use E to interact with objects");
-                        goright = false;
-                        goleft = false;
-                        jumping = false;
-                        messageShown = true;
-                    }
-                    if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
-                        timer1.Stop();
-                        level += 1;
-                        InitializeComponent();
-                    }
-                }
-                if (x is PictureBox && (string)x.Tag == "button") {
-                    if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
-                        update(x.Name);
+                if (x is PictureBox) {
+                    switch ((string)x.Tag) {
+                        case "platform" :
+                            handlePlatformInteraction(player, x);
+                            break;
+                        case "interactivePlatform" :
+                            handlePlatformInteraction(player, x);
+                            break;
+                        case "button" :
+                            if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
+                                update(x.Name);
+                            }
+                            break;
+                        case "ending" :
+                            if (player.Bounds.IntersectsWith(x.Bounds)) {
+                                if (!messageShown) {
+                                    MessageBox.Show("Use E to interact with objects");
+                                    goright = false;
+                                    goleft = false;
+                                    jumping = false;
+                                    messageShown = true;
+                                }
+                                else if (interacting) {
+                                    timer1.Stop();
+                                    level += 1;
+                                    InitializeComponent();
+                                }
+                            }
+                            break;
+                        default :
+                            break;
                     }
                 }
             }
