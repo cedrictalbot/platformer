@@ -60,6 +60,7 @@
             //
             // ending
             //
+            //TODO Handle the ending with the platforms
             this.ending.BackColor = System.Drawing.Color.Transparent;
             this.ending.Location = new System.Drawing.Point(1366,47);
             this.ending.Name = "ending";
