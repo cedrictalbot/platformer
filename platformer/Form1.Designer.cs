@@ -100,9 +100,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ending)).EndInit();
             this.ResumeLayout(false);
 
-            foreach (System.Windows.Forms.PictureBox box in this.pictureBoxes.Values) {
-                if ((string)box.Tag == "interactivePlatform") {
-                        this.Controls.Remove(box);
+            foreach (InteractiveButton button in this.levelComponents["button"]) {
+                if (!button.active) {
+                    System.Windows.Forms.PictureBox box = this.pictureBoxes[this.interactions[button.name]];
+                    this.Controls.Remove(box);
                 }
             }
         }

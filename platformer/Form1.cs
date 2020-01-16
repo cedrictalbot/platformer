@@ -99,6 +99,7 @@ namespace platformgame {
                             break;
                         case "button" :
                             if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
+                                //TODO Handle user interaction with appearing platforms 
                                 update(x.Name);
                             }
                             break;

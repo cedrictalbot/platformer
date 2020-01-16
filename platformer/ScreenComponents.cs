@@ -22,10 +22,12 @@ namespace platformgame {
 
     public class InteractiveButton : ScreenComponent {
         public string interactsWith;
+        public bool active;
 
-        public InteractiveButton(System.Drawing.Color color, int xLocation, int yLocation, string name, int xSize, int ySize, string interactsWith) 
+        public InteractiveButton(System.Drawing.Color color, int xLocation, int yLocation, string name, int xSize, int ySize, string interactsWith, bool active) 
                     : base(color, xLocation, yLocation, name, xSize, ySize) {
             this.interactsWith = interactsWith;
+            this.active = active;
         }
     }
 }
