@@ -114,7 +114,8 @@
         }
 
         private void kill_player() {
-            this.player.Location = new System.Drawing.Point(0, 620);
+            timer1.Stop();
+            InitializeComponent();
         }
 
         private TransparentPictureBox player;

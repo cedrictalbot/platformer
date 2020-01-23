@@ -26,7 +26,7 @@ namespace platformgame {
                     ending.Add(new ScreenComponent(1366,47, "ending",98,100));
                     break;
                 case 2 :
-                    platforms.Add(new ScreenComponent(0,772,"ground",1463,50));
+                    platforms.Add(new ScreenComponent(0,772,"ground",300,50));
                     interactivePlatforms.Add(new ScreenComponent(327,663,"interactivePlatform1",200,50));
                     buttons.Add(new InteractiveButton(227,715,"button1",50,50, "interactivePlatform1", false));
                     platforms.Add(new ScreenComponent(82,571,"platform1",150,50));
