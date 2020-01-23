@@ -9,6 +9,7 @@ namespace platformgame {
             ArrayList platforms = new ArrayList();
             ArrayList buttons = new ArrayList();
             ArrayList interactivePlatforms = new ArrayList();
+            ArrayList ending = new ArrayList();
 
             switch (level) {
                 case 1 :
@@ -20,6 +21,7 @@ namespace platformgame {
                     platforms.Add(new ScreenComponent(710,237,"platform5",50,50));
                     platforms.Add(new ScreenComponent(910,237,"platform6",200,50));
                     platforms.Add(new ScreenComponent(1193,143,"platform7",270,50));
+                    ending.Add(new ScreenComponent(1366,47, "ending",98,100));
                     break;
                 case 2 :
                     platforms.Add(new ScreenComponent(0,772,"ground",1463,50));
@@ -36,9 +38,11 @@ namespace platformgame {
                     buttons.Add(new InteractiveButton(577,324,"button4",50,50, "interactivePlatform4", true));
                     interactivePlatforms.Add(new ScreenComponent(970,262,"interactivePlatform5",150,50));
                     buttons.Add(new InteractiveButton(727,324,"button5",50,50, "interactivePlatform5", false));
+                    ending.Add(new ScreenComponent(1366,47, "ending",98,100));
                     break;
                 case 3 :
                     platforms.Add(new ScreenComponent(0,772,"platform1",200,50));
+                    ending.Add(new ScreenComponent(1366,47, "ending",98,100));
                     break;
                 default :
                     break;
@@ -46,6 +50,7 @@ namespace platformgame {
             items["platform"] = platforms;
             items["button"] = buttons;
             items["interactivePlatform"] = interactivePlatforms;
+            items["ending"] = ending;
             return items;
         }
 
@@ -54,6 +59,7 @@ namespace platformgame {
             images["platform"] = "platformer/public/platform.png";
             images["button"] = "platformer/public/button.png";
             images["interactivePlatform"] = "platformer/public/platform.png";
+            images["ending"] = "platformer/public/door.png";
             return images;
         }
     }

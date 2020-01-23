@@ -27,10 +27,8 @@
 
             this.player = new TransparentPictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.ending = new System.Windows.Forms.PictureBox();
 
             ((System.ComponentModel.ISupportInitialize)(this.player)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ending)).BeginInit();
             this.SuspendLayout();
 
             //
@@ -58,17 +56,6 @@
             this.player.TabStop = false;
             this.player.Image = System.Drawing.Image.FromFile("platformer/public/character_idle.png");
             //
-            // ending
-            //
-            //TODO Handle the ending with the platforms
-            this.ending.BackColor = System.Drawing.Color.Transparent;
-            this.ending.Location = new System.Drawing.Point(1366,47);
-            this.ending.Name = "ending";
-            this.ending.Size = new System.Drawing.Size(98,100);
-            this.ending.TabStop = false;
-            this.ending.Tag = "ending";
-            this.ending.Image = System.Drawing.Image.FromFile("platformer/public/door.png");
-            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -90,7 +77,6 @@
                 ((System.ComponentModel.ISupportInitialize)(box)).EndInit();
             }
 
-            this.Controls.Add(this.ending);
             this.Name = "Form1";
             this.Text = "Platform Game";
             this.Load += new System.EventHandler(this.d);
@@ -98,7 +84,6 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.keyisup);
 
             ((System.ComponentModel.ISupportInitialize)(this.player)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ending)).EndInit();
             this.ResumeLayout(false);
 
             foreach (InteractiveButton button in this.levelComponents["button"]) {
@@ -134,7 +119,6 @@
 
         private TransparentPictureBox player;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.PictureBox ending;
     }
 }
 
