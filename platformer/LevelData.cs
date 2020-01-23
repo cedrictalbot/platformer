@@ -37,6 +37,9 @@ namespace platformgame {
                     interactivePlatforms.Add(new ScreenComponent(970,262,"interactivePlatform5",150,50));
                     buttons.Add(new InteractiveButton(727,324,"button5",50,50, "interactivePlatform5", false));
                     break;
+                case 3 :
+                    platforms.Add(new ScreenComponent(0,772,"platform1",200,50));
+                    break;
                 default :
                     break;
             }

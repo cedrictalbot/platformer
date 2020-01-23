@@ -119,7 +119,7 @@
             box.Tag = key;
             box.SetImage(System.Drawing.Image.FromFile(this.images[key]));
         }
-        private void update(string buttonName) {
+        private void update_button(string buttonName) {
             string elementName = this.interactions[buttonName];
             if (!this.Controls.ContainsKey(elementName)) {
                 this.Controls.Add(this.pictureBoxes[elementName]);
@@ -127,6 +127,11 @@
                 this.Controls.Remove(this.pictureBoxes[elementName]);
             }
         }
+
+        private void kill_player() {
+            this.player.Location = new System.Drawing.Point(0, 622);
+        }
+
         private TransparentPictureBox player;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.PictureBox ending;

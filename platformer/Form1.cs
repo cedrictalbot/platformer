@@ -88,6 +88,7 @@ namespace platformgame {
             hitLeft = false;
             hitRight = false;
 
+            // interactions with boxes
             foreach (Control x in this.Controls) {
                 if (x is PictureBox) {
                     switch ((string)x.Tag) {
@@ -100,7 +101,7 @@ namespace platformgame {
                         case "button" :
                             if (player.Bounds.IntersectsWith(x.Bounds) && interacting) {
                                 //TODO Handle user interaction with appearing platforms 
-                                update(x.Name);
+                                update_button(x.Name);
                             }
                             break;
                         case "ending" :
@@ -124,9 +125,18 @@ namespace platformgame {
                     }
                 }
             }
+            // jumping
             if (jumping && force <0) {
                 jumping = false;
             }
+            if (jumping) {
+                force -= 1;
+            }
+            // gravity
+            if (!onGround && !jumping) {
+                player.Top += gravity;
+            }
+            // avoid clipping through walls
             if (jumping && !hitTop) {
                 player.Top += jumpSpeed;
             }
@@ -136,11 +146,9 @@ namespace platformgame {
             if (goright && !hitRight) {
                 player.Left = Math.Min(this.ClientRectangle.Width-player.Width, player.Left + 5);
             }
-            if (jumping) {
-                force -= 1;
-            }
-            if (!onGround && !jumping) {
-                player.Top += gravity;
+            // handle player fall
+            if (player.Top > this.Bottom) {
+                this.kill_player();
             }
             interacting = false;
         }
