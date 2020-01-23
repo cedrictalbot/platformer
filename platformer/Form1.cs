@@ -93,8 +93,6 @@ namespace platformgame {
                 if (x is PictureBox) {
                     switch ((string)x.Tag) {
                         case "platform" :
-                            handlePlatformInteraction(player, x);
-                            break;
                         case "interactivePlatform" :
                             handlePlatformInteraction(player, x);
                             break;
@@ -118,6 +116,12 @@ namespace platformgame {
                                     level += 1;
                                     InitializeComponent();
                                 }
+                            }
+                            break;
+                        case "spikes" :
+                        case "interactiveSpikes" :
+                            if (player.Bounds.IntersectsWith(x.Bounds)) {
+                                kill_player();
                             }
                             break;
                         default :
