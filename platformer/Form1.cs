@@ -183,6 +183,8 @@ namespace platformgame {
             m["onGround"] = false;
             bool canGoRight = false;
             bool canGoLeft = false;
+            bool hitLeft = false;
+            bool hitRight = false;
             foreach (Control platform in this.Controls) {
                 if (platform is PictureBox && ((string)platform.Tag == "platform" || (string)platform.Tag == "interactivePlatform")) {
                     if (monster.Left < platform.Right && monster.Right > platform.Left) {
@@ -197,8 +199,21 @@ namespace platformgame {
                             }
                         }
                     }
+                    if (monster.Top < platform.Bottom && monster.Bottom > platform.Top) {
+                        if (monster.Left - platform.Right >= 0 && monster.Left - platform.Right < 5) {
+                            monster.Left = platform.Right;
+                            hitLeft = true;
+                        }
+                        else if (platform.Left - monster.Right >= 0 && platform.Left - monster.Right < 5) {
+                            monster.Left = platform.Left - monster.Width;
+                            hitRight = true;
+                        }
+                    }
                 }
             }
+            canGoRight = canGoRight & !hitRight;
+            canGoLeft = canGoLeft & !hitLeft;
+
             if (m["goRight"] && !canGoRight && canGoLeft) {
                 m["goRight"] = false;
                 m["goLeft"] = true;

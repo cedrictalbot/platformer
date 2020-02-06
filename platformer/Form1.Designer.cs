@@ -5,7 +5,7 @@
         private System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox> pictureBoxes;
         private System.Collections.Generic.Dictionary<string, string> interactions;
         private System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, bool>> monsters;
-        private int level = 3;
+        private int level = 1;
         private System.Collections.Generic.Dictionary<string, string> images = LevelHelper.getImages();
 
         private void InitializeComponent() {
