@@ -19,12 +19,19 @@ namespace platformgame {
     }
 
     public class InteractiveButton : ScreenComponent {
-        public string interactsWith;
+        public ArrayList interactsWith;
         public bool active;
 
-        public InteractiveButton(int xLocation, int yLocation, string name, int xSize, int ySize, string interactsWith, bool active) 
+        public InteractiveButton(int xLocation, int yLocation, string name, int xSize, int ySize, ArrayList interactsWith, bool active)
                     : base(xLocation, yLocation, name, xSize, ySize) {
             this.interactsWith = interactsWith;
+            this.active = active;
+        }
+
+        public InteractiveButton(int xLocation, int yLocation, string name, int xSize, int ySize, string interactsWith, bool active)
+                    : base(xLocation, yLocation, name, xSize, ySize) {
+            this.interactsWith = new ArrayList();
+            this.interactsWith.Add(interactsWith);
             this.active = active;
         }
     }

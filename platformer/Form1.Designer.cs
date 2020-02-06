@@ -3,7 +3,7 @@
         private System.ComponentModel.IContainer components = null;
         private System.Collections.Generic.Dictionary<string, System.Collections.ArrayList> levelComponents;
         private System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox> pictureBoxes;
-        private System.Collections.Generic.Dictionary<string, string> interactions;
+        private System.Collections.Generic.Dictionary<string, System.Collections.ArrayList> interactions;
         private System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, bool>> monsters;
         private int level = 1;
         private System.Collections.Generic.Dictionary<string, string> images = LevelHelper.getImages();
@@ -14,11 +14,12 @@
 
             this.levelComponents = LevelHelper.getItems(this.level);
             this.pictureBoxes = new System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox>();
-            this.interactions = new System.Collections.Generic.Dictionary<string, string>();
+            this.interactions = new System.Collections.Generic.Dictionary<string, System.Collections.ArrayList>();
             this.monsters = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, bool>>();
 
             foreach (var pair in this.levelComponents) {
                 foreach (ScreenComponent component in pair.Value) {
+                    //TODO Force the buttons to be behind the monsters
                     this.pictureBoxes[component.name] = new System.Windows.Forms.PictureBox();
                 }
             }
@@ -98,8 +99,10 @@
 
             foreach (InteractiveButton button in this.levelComponents["button"]) {
                 if (!button.active) {
-                    System.Windows.Forms.PictureBox box = this.pictureBoxes[this.interactions[button.name]];
-                    this.Controls.Remove(box);
+                    foreach (string name in this.interactions[button.name]) {
+                        System.Windows.Forms.PictureBox box = this.pictureBoxes[name];
+                        this.Controls.Remove(box);
+                    }
                 }
             }
         }
@@ -115,11 +118,12 @@
             box.SetImage(System.Drawing.Image.FromFile(this.images[key]));
         }
         private void update_button(string buttonName) {
-            string elementName = this.interactions[buttonName];
-            if (!this.Controls.ContainsKey(elementName)) {
-                this.Controls.Add(this.pictureBoxes[elementName]);
-            } else {
-                this.Controls.Remove(this.pictureBoxes[elementName]);
+            foreach (string elementName in this.interactions[buttonName]) {
+                if (!this.Controls.ContainsKey(elementName)) {
+                    this.Controls.Add(this.pictureBoxes[elementName]);
+                } else {
+                    this.Controls.Remove(this.pictureBoxes[elementName]);
+                }
             }
         }
 

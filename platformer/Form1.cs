@@ -72,7 +72,7 @@ namespace platformgame {
                     hitTop = true;
                 }
             }
-            if (player.Top <= platform.Bottom && player.Bottom >= platform.Top) {
+            if (player.Top < platform.Bottom && player.Bottom > platform.Top) {
                 if (player.Left - platform.Right >= 0 && player.Left - platform.Right < 5 && goLeft) {
                     player.Left = platform.Right;
                     hitLeft = true;
@@ -191,10 +191,10 @@ namespace platformgame {
                         if (platform.Top - monster.Bottom >= -gravity && platform.Top - monster.Bottom < gravity ) {
                             monster.Top = platform.Top - monster.Height;
                             m["onGround"] = true;
-                            if (platform.Left < monster.Right -5) {
+                            if (platform.Left < monster.Right -5 && monster.Left > 0) {
                                 canGoLeft = true;
                             }
-                            if (platform.Right > monster.Left + 5) {
+                            if (platform.Right > monster.Left + 5 && monster.Right < this.ClientRectangle.Width) {
                                 canGoRight = true;
                             }
                         }
@@ -211,6 +211,7 @@ namespace platformgame {
                     }
                 }
             }
+
             canGoRight = canGoRight & !hitRight;
             canGoLeft = canGoLeft & !hitLeft;
 
