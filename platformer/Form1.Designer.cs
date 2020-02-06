@@ -4,7 +4,8 @@
         private System.Collections.Generic.Dictionary<string, System.Collections.ArrayList> levelComponents;
         private System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox> pictureBoxes;
         private System.Collections.Generic.Dictionary<string, string> interactions;
-        private int level = 1;
+        private System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, bool>> monsters;
+        private int level = 3;
         private System.Collections.Generic.Dictionary<string, string> images = LevelHelper.getImages();
 
         private void InitializeComponent() {
@@ -14,6 +15,7 @@
             this.levelComponents = LevelHelper.getItems(this.level);
             this.pictureBoxes = new System.Collections.Generic.Dictionary<string, System.Windows.Forms.PictureBox>();
             this.interactions = new System.Collections.Generic.Dictionary<string, string>();
+            this.monsters = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.Dictionary<string, bool>>();
 
             foreach (var pair in this.levelComponents) {
                 foreach (ScreenComponent component in pair.Value) {
@@ -41,6 +43,14 @@
                     switch (pair.Key) {
                         case "button":
                             this.interactions[component.name] = ((InteractiveButton) component).interactsWith;
+                            break;
+                        case "monster":
+                            this.monsters[component.name] = new System.Collections.Generic.Dictionary<string, bool>();
+                            this.monsters[component.name]["onGround"] = false;
+                            this.monsters[component.name]["goRight"] = false;
+                            this.monsters[component.name]["goLeft"] = false;
+                            break;
+                        default:
                             break;
                     }
                     displayComponent(pair.Key, component);

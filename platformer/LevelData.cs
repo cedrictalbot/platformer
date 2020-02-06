@@ -12,6 +12,7 @@ namespace platformgame {
             ArrayList spikes = new ArrayList();
             ArrayList interactiveSpikes = new ArrayList();
             ArrayList ending = new ArrayList();
+            ArrayList monsters = new ArrayList();
 
             switch (level) {
                 case 1 :
@@ -45,9 +46,10 @@ namespace platformgame {
                 case 3 :
                     platforms.Add(new ScreenComponent(0,772,"platform1",200,50));
                     platforms.Add(new ScreenComponent(230,693,"platform2",150,50));
-                    interactiveSpikes.Add(new ScreenComponent(230, 643, "interactiveSpike1", 150, 50));
-                    buttons.Add(new InteractiveButton(125,715,"button1",50,50, "interactiveSpike1", true));
+                    // interactiveSpikes.Add(new ScreenComponent(230, 643, "interactiveSpike1", 150, 50));
+                    // buttons.Add(new InteractiveButton(125,715,"button1",50,50, "interactiveSpike1", true));
                     ending.Add(new ScreenComponent(1366,47, "ending",98,100));
+                    monsters.Add(new ScreenComponent(230,0,"monster1", 47,64));
                     break;
                 default :
                     break;
@@ -58,6 +60,7 @@ namespace platformgame {
             items["spikes"] = spikes;
             items["interactiveSpikes"] = interactiveSpikes;
             items["ending"] = ending;
+            items["monster"] = monsters;
             return items;
         }
 
@@ -69,6 +72,7 @@ namespace platformgame {
             images["ending"] = "platformer/public/door.png";
             images["spikes"] = "platformer/public/platform.png";
             images["interactiveSpikes"] = "platformer/public/platform.png";
+            images["monster"] = "platformer/public/character_idle.png";
             return images;
         }
     }
